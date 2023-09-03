@@ -14,6 +14,7 @@ export interface GoogleAuthButtonProps {
 export default function useGoogleAuth() {
 
     const [data, setData] = useState({});
+    const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
@@ -22,7 +23,7 @@ export default function useGoogleAuth() {
         const headers = { Authorization: `Bearer ${access_token}` };
         fetch(process.env.REACT_APP_GOOGLE_API ?? "", { headers })
             .then(res => res.json())
-            .then(data => { setData(data) })
+            .then(data => { setData(data); setSuccess(true) })
             .catch(() => { setError(true) })
             .finally(() => { setLoading(false) })
     }
@@ -43,6 +44,6 @@ export default function useGoogleAuth() {
     }
 
     return {
-        AuthButton, data, error, loading
+        AuthButton, data, error, loading, success
     }
 }
