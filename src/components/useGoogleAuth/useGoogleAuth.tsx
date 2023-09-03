@@ -7,7 +7,8 @@ export interface onSuccessProps { access_token: string }
 export interface GoogleAuthButtonProps {
     text?: string,
     mode?: "dark" | "light"
-    sx?: CSSProperties
+    sx?: CSSProperties,
+    onClick: () => void
 }
 
 export default function useGoogleAuth() {
@@ -26,7 +27,7 @@ export default function useGoogleAuth() {
             .finally(() => { setLoading(false) })
     }
 
-    function AuthButton({ text, mode, sx }: GoogleAuthButtonProps) {
+    function AuthButton({ text, mode, sx, onClick }: GoogleAuthButtonProps) {
         return (
             <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID ?? ""}>
                 <GoogleAuthButton
@@ -35,6 +36,7 @@ export default function useGoogleAuth() {
                     mode={mode}
                     text={text}
                     sx={sx}
+                    onClick={onClick}
                 />
             </GoogleOAuthProvider>
         )

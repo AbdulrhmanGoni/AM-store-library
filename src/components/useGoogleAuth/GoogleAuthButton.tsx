@@ -8,14 +8,14 @@ interface ButtonProps extends GoogleAuthButtonProps {
     onError?: () => void
 }
 
-export default function GoogleAuthButton({ text, mode, sx, onSuccess, onError }: ButtonProps) {
+export default function GoogleAuthButton({ text, mode, sx, onSuccess, onError, onClick }: ButtonProps) {
 
     let isDark = mode === "dark";
     const loginWithGoogle = useGoogleLogin({ onSuccess, onError });
 
     return (
         <Button
-            onClick={() => loginWithGoogle()}
+            onClick={() => { loginWithGoogle(); onClick() }}
             sx={{
                 width: "100%",
                 bgcolor: isDark ? "black" : "white",
