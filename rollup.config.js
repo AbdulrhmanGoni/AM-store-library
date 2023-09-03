@@ -1,9 +1,10 @@
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
-import dts from 'rollup-plugin-dts'
+import dotenv from "rollup-plugin-dotenv"
 import { importMetaAssets } from '@web/rollup-plugin-import-meta-assets';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
+import dts from 'rollup-plugin-dts'
 // import terser from '@rollup/plugin-terser'
 
 const packageJson = require('./package.json');
@@ -19,12 +20,11 @@ export default [
       },
     ],
     plugins: [
+      dotenv.default(),
       typescript(),
       peerDepsExternal(),
       resolve(),
-      importMetaAssets({
-        warnOnError: true
-      }),
+      importMetaAssets({ warnOnError: true }),
       commonjs(),
       // terser(),
     ],
