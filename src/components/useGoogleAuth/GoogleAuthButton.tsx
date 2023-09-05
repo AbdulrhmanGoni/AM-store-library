@@ -1,21 +1,28 @@
 import React from 'react'
 import { Button, Box } from '@mui/material'
 import { useGoogleLogin } from '@react-oauth/google'
-import { onSuccessProps, GoogleAuthButtonProps } from './useGoogleAuth'
+import { GoogleAuthButtonProps, onSuccessProps } from './useGoogleAuth'
 
-interface ButtonProps extends GoogleAuthButtonProps {
-    onSuccess: (props: onSuccessProps) => void,
-    onError?: () => void
-}
+export default function GoogleAuthButton(props: GoogleAuthButtonProps) {
 
-export default function GoogleAuthButton({ text, mode, sx, onSuccess, onError, onClick }: ButtonProps) {
-
+    let { text, mode, sx, onSuccess, onError, onClick, onAgree, onFinally } = props;
     let isDark = mode === "dark";
-    const loginWithGoogle = useGoogleLogin({ onSuccess, onError });
+    const loginWithGoogle = useGoogleLogin({
+        onSuccess: ({ access_token }: onSuccessProps) => {
+            onAgree?.()
+            const headers = { Authorization: `Bearer ${access_token}` };
+            fetch(process.env.REACT_APP_GOOGLE_API ?? "", { headers })
+                .then(res => res.json())
+                .then(data => onSuccess(data))
+                .catch(() => onError?.())
+                .finally(() => onFinally?.())
+        },
+        onError
+    });
 
     return (
         <Button
-            onClick={() => { loginWithGoogle(); onClick() }}
+            onClick={() => { loginWithGoogle(); onClick?.() }}
             sx={{
                 width: "100%",
                 bgcolor: isDark ? "black" : "white",
