@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Box } from '@mui/material'
 import { useGoogleLogin } from '@react-oauth/google'
 import { GoogleAuthButtonProps, onSuccessProps } from './useGoogleAuth'
+import googleIcon from "../../images/google-icon.png"
 
 export default function GoogleAuthButton(props: GoogleAuthButtonProps) {
 
@@ -35,7 +36,7 @@ export default function GoogleAuthButton(props: GoogleAuthButtonProps) {
         >
             <Box
                 component="img"
-                src={new URL('../../images/google-icon.png', import.meta.url).href}
+                src={googleIcon}
                 sx={{ width: "45px", height: "35px", mr: 1, userSelect: "none" }}
                 alt='Google logo'
             />
