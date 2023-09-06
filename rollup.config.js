@@ -2,7 +2,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 import dotenv from "rollup-plugin-dotenv"
-import { importMetaAssets } from '@web/rollup-plugin-import-meta-assets';
+import image from '@rollup/plugin-image';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import dts from 'rollup-plugin-dts'
 // import terser from '@rollup/plugin-terser'
@@ -24,7 +24,7 @@ export default [
       typescript(),
       peerDepsExternal(),
       resolve(),
-      importMetaAssets({ warnOnError: true }),
+      image(),
       commonjs(),
       // terser(),
     ],

@@ -1,9 +1,18 @@
 import React, { CSSProperties, JSX } from 'react'
 import { Refresh } from '@mui/icons-material'
 import { Alert, Box, CardMedia, IconButton, Paper, Typography } from '@mui/material';
+import empty from '../../images/empty.png';
+import unexpected from "../../images/unexpected.png";
+import server from "../../images/server.png";
+import network from "../../images/network.png"
+import notFound from "../../images/notFound.png"
+import waiting from "../../images/waiting.png"
+import waiting1 from "../../images/waiting1.png"
+import waiting2 from "../../images/waiting2.png"
+import unauthorized from "../../images/unauthorized.png"
 
 type illustratorTypes =
-    "empty" | "server" | "notFound" | "unexpected" | 
+    "empty" | "server" | "notFound" | "unexpected" |
     "network" | "unauthorized" | "waiting" | "waiting1" |
     "waiting2"
 
@@ -21,15 +30,9 @@ interface ErrorThrowerProps {
 }
 
 const illustrator = {
-    empty: new URL('../../images/empty.png', import.meta.url).href,
-    unexpected: new URL("../../images/unexpected.png", import.meta.url).href,
-    server: new URL("../../images/server.png", import.meta.url).href,
-    network: new URL("../../images/network.png", import.meta.url).href,
-    notFound: new URL("../../images/notFound.png", import.meta.url).href,
-    waiting: new URL("../../images/waiting.png", import.meta.url).href,
-    waiting1: new URL("../../images/waiting1.png", import.meta.url).href,
-    waiting2: new URL("../../images/waiting2.png", import.meta.url).href,
-    unauthorized: new URL("../../images/unauthorized.png", import.meta.url).href,
+    empty, unexpected, server,
+    network, notFound, waiting,
+    waiting1, waiting2, unauthorized
 }
 
 function ErrorThrower(props: ErrorThrowerProps) {
