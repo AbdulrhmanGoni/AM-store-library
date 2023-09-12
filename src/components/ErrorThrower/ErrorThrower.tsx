@@ -11,7 +11,7 @@ import waiting1 from "../../images/waiting1.png"
 import waiting2 from "../../images/waiting2.png"
 import unauthorized from "../../images/unauthorized.png"
 
-type illustratorTypes =
+export type illustratorTypes =
     "empty" | "server" | "notFound" | "unexpected" |
     "network" | "unauthorized" | "waiting" | "waiting1" |
     "waiting2"
@@ -69,7 +69,16 @@ function ErrorThrower(props: ErrorThrowerProps) {
     return (
         <Box sx={{ ...parentStyle, ...containerOptions, height, width: "100%", ...style }} >
             <Box sx={{ ...parentStyle, m: 1, gap: 1, maxWidth: "600px" }}>
-                <Paper elevation={2} sx={{ ...parentStyle, p: 2, textAlign: "center", width: "100%", ...paperStyle }}>
+                <Paper
+                    elevation={2}
+                    sx={{
+                        ...parentStyle,
+                        p: 2,
+                        position: "relative",
+                        textAlign: "center",
+                        width: "100%",
+                        ...paperStyle
+                    }}>
                     <Typography variant='h6'>{title}</Typography>
                     <CardMedia
                         component={"img"}
