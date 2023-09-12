@@ -3,18 +3,18 @@ import { Box, CircularProgress } from '@mui/material';
 
 interface LoadingCircleProps {
     style?: CSSProperties,
-    id?: string,
+    staticCircle?: string,
     darkBg?: boolean
 }
 
-function LoadingCircle({ style, id, darkBg }: LoadingCircleProps) {
+function LoadingCircle({ style, staticCircle, darkBg }: LoadingCircleProps) {
 
     const startStyle = {
         position: "fixed",
         top: 0, left: 0,
         minHeight: "100vh",
         width: "100%",
-        display: id === "loadingCircle" ? "none" : "flex",
+        display: staticCircle === "loadingCircle-id" ? "none" : "flex",
         justifyContent: "center",
         alignItems: "center",
         zIndex: 1000,
@@ -22,7 +22,7 @@ function LoadingCircle({ style, id, darkBg }: LoadingCircleProps) {
     }
 
     return (
-        <Box id={id} sx={{ ...startStyle, ...style }}>
+        <Box id={staticCircle} sx={{ ...startStyle, ...style }}>
             <CircularProgress color='primary' />
         </Box>
     );

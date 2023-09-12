@@ -26,7 +26,6 @@
     "@types/node": "^20.5.6",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
-    "@web/rollup-plugin-import-meta-assets": "^2.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rollup": "^3.26.3",
