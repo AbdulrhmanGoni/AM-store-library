@@ -39,6 +39,7 @@ export default function GoogleAuthButton(props: GoogleAuthButtonProps) {
                 src={googleIcon}
                 sx={{ width: "45px", height: "35px", mr: 1, userSelect: "none" }}
                 alt='Google logo'
+                draggable={false}
             />
             {text ? text : "Continue with Google"}
         </Button>

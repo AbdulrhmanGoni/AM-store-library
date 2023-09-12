@@ -21,6 +21,7 @@ interface ErrorThrowerProps {
     message?: string,
     fullPage?: boolean,
     style?: CSSProperties,
+    paperStyle?: CSSProperties,
     disableHeight?: boolean,
     withRefreshButton?: boolean,
     illustratorType: illustratorTypes,
@@ -42,7 +43,8 @@ function ErrorThrower(props: ErrorThrowerProps) {
         style, disableHeight,
         withRefreshButton,
         alertType, hideAlertMsg,
-        illustratorType, children
+        illustratorType, children,
+        paperStyle
     } = props;
 
     const parentStyle = {
@@ -67,7 +69,7 @@ function ErrorThrower(props: ErrorThrowerProps) {
     return (
         <Box sx={{ ...parentStyle, ...containerOptions, height, width: "100%", ...style }} >
             <Box sx={{ ...parentStyle, m: 1, gap: 1, maxWidth: "600px" }}>
-                <Paper elevation={2} sx={{ ...parentStyle, p: 2, textAlign: "center", width: "100%" }}>
+                <Paper elevation={2} sx={{ ...parentStyle, p: 2, textAlign: "center", width: "100%", ...paperStyle }}>
                     <Typography variant='h6'>{title}</Typography>
                     <CardMedia
                         component={"img"}
