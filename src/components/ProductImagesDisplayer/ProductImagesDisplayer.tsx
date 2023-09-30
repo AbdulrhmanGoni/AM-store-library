@@ -1,7 +1,6 @@
-import LoadingGrayBar from '../LoadingGrayBar';
 import { PromiseState } from '../../interfaces';
 import ErrorThrower from '../ErrorThrower';
-import { Avatar, Box, useTheme } from '@mui/material';
+import { Avatar, Box, Skeleton, useTheme } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 
 interface ImagesDisplayerProps extends PromiseState {
@@ -16,7 +15,7 @@ export default function ProductImagesDisplayer({ images, isLoading, isError }: I
     return (
         <Box sx={{ display: "flex", flexBasis: "50%", flexDirection: "column", gap: 1 }}>
             {
-                isLoading ? <LoadingGrayBar width={"100%"} height={350} type="rounded" sx={{ bgcolor: "rgb(0 0 0 / 20%)" }} />
+                isLoading ? <Skeleton width={"100%"} height={350} variant="rounded" sx={{ bgcolor: "rgb(0 0 0 / 20%)" }} />
                     : isError ? <ErrorThrower
                         title='Filed To load images'
                         hideAlertMsg
@@ -24,12 +23,18 @@ export default function ProductImagesDisplayer({ images, isLoading, isError }: I
                         illustratorType="unexpected"
                     />
                         : <Avatar
-                            key="img" alt="product's image" src={current ?? ""}
-                            sx={{ width: "100%", height: "350px", borderRadius: 0, "& > img": { objectFit: "fill" } }}
+                            key="img"
+                            alt="product's image" src={current ?? ""}
+                            sx={{
+                                width: "100%",
+                                height: "350px",
+                                borderRadius: 0,
+                                "& > img": { objectFit: "contain" }
+                            }}
                         />
             }
             {
-                isLoading ? <LoadingGrayBar width={"100%"} height={45} type="rounded" sx={{ bgcolor: "rgb(0 0 0 / 20%)" }} />
+                isLoading ? <Skeleton width={"100%"} height={45} variant="rounded" sx={{ bgcolor: "rgb(0 0 0 / 20%)" }} />
                     : isError ? null
                         : <Box key="bar" sx={{ display: "flex", gap: 1, justifyContent: "center" }}>
                             {
