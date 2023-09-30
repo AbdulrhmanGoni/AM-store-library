@@ -36,7 +36,7 @@ const illustrator = {
     waiting1, waiting2, unauthorized
 }
 
-function ErrorThrower(props: ErrorThrowerProps) {
+export default function ErrorThrower(props: ErrorThrowerProps) {
 
     let {
         message, title, fullPage,
@@ -98,5 +98,3 @@ function ErrorThrower(props: ErrorThrowerProps) {
         </ Box >
     )
 }
-
-export default ErrorThrower

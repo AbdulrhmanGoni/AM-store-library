@@ -19,10 +19,11 @@ function LoadingCircle({ style, staticCircle, darkBg }: LoadingCircleProps) {
         alignItems: "center",
         zIndex: 1000,
         backgroundColor: darkBg ? "#00000080" : "tranparent",
+        ...style
     }
 
     return (
-        <Box id={staticCircle ? "loadingCircle-id" : undefined} sx={{ ...startStyle, ...style }}>
+        <Box id={staticCircle ? "loadingCircle-id" : undefined} sx={startStyle}>
             <CircularProgress color='primary' />
         </Box>
     );
