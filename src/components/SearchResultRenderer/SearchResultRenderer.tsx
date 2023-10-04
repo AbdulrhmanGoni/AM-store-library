@@ -22,7 +22,7 @@ export default function SearchResultRenderer(props: SearchResultRendererProps) {
         </Typography>
     )
 
-    const listHeight = products.length > 6 ? 290 : products.length * 40;
+    const listHeight = products.length > 6 ? 240 : products.length ? products.length * 40 : 40;
 
     return (
         <Box
@@ -39,27 +39,33 @@ export default function SearchResultRenderer(props: SearchResultRendererProps) {
                 overflow: "auto"
             }}>
                 {
-                    products?.map(({ _id, title }) => {
-                        let regExp = new RegExp(searchText.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1"), "ig");
-                        const
-                            matched = title.match(regExp),
-                            splitedText = title.split(regExp);
+                    !!products.length ?
+                        products.map(({ _id, title }) => {
+                            let regExp = new RegExp(searchText.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1"), "ig");
+                            const
+                                matched = title.match(regExp),
+                                splitedText = title.split(regExp);
 
-                        return (
-                            <ListItem key={_id} component="div" disablePadding>
-                                <ListItemButton onClick={() => actionWithProductId(_id)} sx={{ justifyContent: "space-between", }}>
-                                    <Typography component="p">
-                                        {splitedText.map((str, index) =>
-                                            <Typography component="span" key={str + index}>
-                                                {str}{index !== splitedText.length - 1 && mark(matched?.[index])}
-                                            </Typography>
-                                        )}
-                                    </Typography>
-                                    {endItemIcon}
-                                </ListItemButton>
-                            </ListItem>
-                        )
-                    })
+                            return (
+                                <ListItem key={_id} component="div" disablePadding>
+                                    <ListItemButton onClick={() => actionWithProductId(_id)} sx={{ justifyContent: "space-between" }}>
+                                        <Typography component="p">
+                                            {splitedText.map((str, index) =>
+                                                <Typography component="span" key={str + index}>
+                                                    {str}{index !== splitedText.length - 1 && mark(matched?.[index])}
+                                                </Typography>
+                                            )}
+                                        </Typography>
+                                        {endItemIcon}
+                                    </ListItemButton>
+                                </ListItem>
+                            )
+                        }) :
+                        <ListItem key="No Search" component="div" disablePadding>
+                            <ListItemButton>
+                                <Typography component="p">No Search Result</Typography>
+                            </ListItemButton>
+                        </ListItem>
                 }
             </List>
         </Box>

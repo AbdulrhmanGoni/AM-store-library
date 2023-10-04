@@ -9,16 +9,30 @@ export interface SearchFieldProps {
     actionWithProductId: (id: string) => void,
     endItemIcon: JSX.Element,
     dominName?: string,
+    defaultValue?: string,
+    onEnter?: (searchInput: string) => void,
     fieldSize?: "small" | "medium",
+    disableResultsList?: boolean,
 }
 
-export default function SearchField({ actionWithProductId, endItemIcon, dominName, fieldSize }: SearchFieldProps) {
+export default function SearchForProductsField(props: SearchFieldProps) {
+
+    const {
+        actionWithProductId,
+        endItemIcon,
+        dominName,
+        fieldSize,
+        onEnter,
+        defaultValue,
+        disableResultsList
+    } = props;
 
     const [searchInput, setSearchInput] = useState<string>("");
     const [searchKey, setSearchKey] = useState<string>("");
     const [products, setProducts] = useState<searchResponse[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
+    const [ableResultsList, setAbleResultsList] = useState<boolean>(true);
 
     function onChange(value: string) {
         value[0] !== searchKey && setSearchKey(value[0])
@@ -29,10 +43,16 @@ export default function SearchField({ actionWithProductId, endItemIcon, dominNam
     function fetchProducts(searchKey: string) {
         setIsLoading(true);
         fetch(`${dominName}products?title=${searchKey}&returnType=title`)
-            .then((res) => res.json())
+            .then((res) => {
+                if (res.status == 200) return res.json();
+                else if (res.status == 404) return [];
+                else return null;
+            })
             .then((data) => {
-                setProducts(data);
-                isError && setIsError(false);
+                if (data) {
+                    setProducts(data)
+                    isError && setIsError(false);
+                } else setIsError(true)
             })
             .catch(() => { setIsError(true) })
             .finally(() => { setIsLoading(false) })
@@ -49,7 +69,24 @@ export default function SearchField({ actionWithProductId, endItemIcon, dominNam
         return productsList.filter(product => product.title.match(new RegExp(regExp, "ig")))
     }
 
-    useEffect(() => { searchKey && fetchProducts(searchKey); }, [searchKey])
+    useEffect(() => {
+        if (!(ableResultsList && !disableResultsList)) {
+            setAbleResultsList(!disableResultsList)
+        }
+    }, [disableResultsList])
+
+    useEffect(() => {
+        if (!disableResultsList) {
+            searchKey && fetchProducts(searchKey)
+        }
+    }, [searchKey, disableResultsList])
+
+    useEffect(() => {
+        if (defaultValue) {
+            setSearchKey(defaultValue[0])
+            setSearchInput(defaultValue)
+        }
+    }, [defaultValue])
 
     const rightIconStyle = { position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)" }
     const iconSize = fieldSize === "small" ? { width: "0.85em", height: "0.85em" } : {}
@@ -58,30 +95,38 @@ export default function SearchField({ actionWithProductId, endItemIcon, dominNam
             display: isError || !!searchInput ? "flex" : "none",
             ...rightIconStyle, right: 4
         },
-        size: "small"
+        size: fieldSize
     }
 
     return (
         <Box sx={{ display: "flex", gap: 1, position: "relative", width: "100%" }}>
             <TextField
                 onChange={({ target }) => { onChange(target.value) }}
-                inputProps={{ sx: { p: "8.5px 40px 8.5px 14px" } }}
-                fullWidth
+                inputProps={{ sx: { pr: "40px" } }}
                 label="Search for products"
                 id='searchProductsField'
                 value={searchInput}
                 error={isError}
                 size={fieldSize}
+                fullWidth
+                onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.code === "Enter") {
+                        let input = event.target as HTMLInputElement
+                        onEnter?.(input.value)
+                    }
+                }}
             />
             {
                 isLoading ?
-                    <Box sx={{ display: "flex", ...rightIconStyle }}><CircularProgress size={20} /></Box>
+                    <Box sx={{ display: "flex", ...rightIconStyle }}>
+                        <CircularProgress color={!isError ? "primary" : "error"} size={20} />
+                    </Box>
                     : isError ?
                         <IconButton
                             onClick={() => { fetchProducts(searchKey) }}
                             {...iconsProps}
                         >
-                            <Replay sx={iconSize} color="warning" />
+                            <Replay sx={iconSize} color="error" />
                         </IconButton>
                         : !!searchInput ?
                             <IconButton
@@ -93,7 +138,7 @@ export default function SearchField({ actionWithProductId, endItemIcon, dominNam
                             : null
             }
             {
-                (!!products.length && !!searchInput) &&
+                (ableResultsList && products && !isLoading && !!searchInput) &&
                 <SearchResultRenderer
                     actionWithProductId={actionWithProductId}
                     products={filterProducts(products)}
