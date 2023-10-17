@@ -13,7 +13,7 @@ export default function ProductImagesDisplayer({ images, isLoading, isError }: I
     useEffect(() => { setCurrent(images?.[0]) }, [images])
 
     return (
-        <Box sx={{ display: "flex", flexBasis: "50%", flexDirection: "column", gap: 1 }}>
+        <Box sx={{ display: "flex", flexBasis: "50%", flexDirection: "column", gap: 1.5 }}>
             {
                 isLoading ? <Skeleton width={"100%"} height={350} variant="rounded" sx={{ bgcolor: "rgb(0 0 0 / 20%)" }} />
                     : isError ? <ErrorThrower
@@ -27,7 +27,7 @@ export default function ProductImagesDisplayer({ images, isLoading, isError }: I
                             alt="product's image" src={current ?? ""}
                             sx={{
                                 width: "100%",
-                                height: "350px",
+                                maxHeight: "350px",
                                 borderRadius: 0,
                                 "& > img": { objectFit: "contain" }
                             }}

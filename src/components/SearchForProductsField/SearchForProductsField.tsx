@@ -13,6 +13,7 @@ export interface SearchFieldProps {
     onEnter?: (searchInput: string) => void,
     fieldSize?: "small" | "medium",
     disableResultsList?: boolean,
+    additionalFilter?: string
 }
 
 export default function SearchForProductsField(props: SearchFieldProps) {
@@ -24,7 +25,8 @@ export default function SearchForProductsField(props: SearchFieldProps) {
         fieldSize,
         onEnter,
         defaultValue,
-        disableResultsList
+        disableResultsList,
+        additionalFilter
     } = props;
 
     const [searchInput, setSearchInput] = useState<string>("");
@@ -42,7 +44,7 @@ export default function SearchForProductsField(props: SearchFieldProps) {
 
     function fetchProducts(searchKey: string) {
         setIsLoading(true);
-        fetch(`${dominName}products?title=${searchKey}&returnType=title`)
+        fetch(`${dominName}products?title=${searchKey}&returnType=title&${additionalFilter}`)
             .then((res) => {
                 if (res.status == 200) return res.json();
                 else if (res.status == 404) return [];
