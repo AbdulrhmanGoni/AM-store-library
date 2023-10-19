@@ -8,7 +8,7 @@ export interface searchResponse { _id: string, title: string }
 export interface SearchFieldProps {
     actionWithProductId: (id: string) => void,
     endItemIcon: JSX.Element,
-    dominName?: string,
+    hostName?: string,
     defaultValue?: string,
     onEnter?: (searchInput: string) => void,
     fieldSize?: "small" | "medium",
@@ -21,7 +21,7 @@ export default function SearchForProductsField(props: SearchFieldProps) {
     const {
         actionWithProductId,
         endItemIcon,
-        dominName,
+        hostName,
         fieldSize,
         onEnter,
         defaultValue,
@@ -44,7 +44,7 @@ export default function SearchForProductsField(props: SearchFieldProps) {
 
     function fetchProducts(searchKey: string) {
         setIsLoading(true);
-        fetch(`${dominName}products?title=${searchKey}&returnType=title&${additionalFilter}`)
+        fetch(`${hostName}/products?title=${searchKey}&returnType=title&${additionalFilter}`)
             .then((res) => {
                 if (res.status == 200) return res.json();
                 else if (res.status == 404) return [];

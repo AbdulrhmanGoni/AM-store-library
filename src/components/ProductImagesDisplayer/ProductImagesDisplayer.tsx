@@ -28,6 +28,8 @@ export default function ProductImagesDisplayer({ images, isLoading, isError }: I
                             sx={{
                                 width: "100%",
                                 maxHeight: "350px",
+                                minHeight: "270px",
+                                height: "auto",
                                 borderRadius: 0,
                                 "& > img": { objectFit: "contain" }
                             }}
