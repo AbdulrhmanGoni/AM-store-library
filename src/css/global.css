@@ -1,0 +1,95 @@
+:root {
+    --gap-value: 8px
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+    width: 3px;
+    height: 6px
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-column-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-row-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-row-center-between {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-row-center-start {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.flex-row-center-end {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.gap1 {
+    gap: var(--gap-value);
+}
+
+.gap2 {
+    gap: var(--gap-value * 2);
+}
+
+.gap3 {
+    gap: var(--gap-value * 3);
+}
+
+.gap4 {
+    gap: var(--gap-value * 4);
+}
+
+.full-width {
+    width: 100%;
+}
+
+.full-width-vw {
+    width: 100vw;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.full-height-vh {
+    height: 100vh;
+}

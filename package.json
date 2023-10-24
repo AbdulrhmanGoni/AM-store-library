@@ -1,6 +1,6 @@
 {
   "name": "@abdulrhmangoni/am-store-library",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "Library containes the shared components which they can be used in clint-site and admin panel projects",
   "main": "dist/cjs/index.js",
   "files": [
@@ -23,7 +23,6 @@
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-terser": "^0.4.3",
     "@rollup/plugin-typescript": "^11.1.2",
-    "rollup-plugin-import-css": "^3.3.5",
     "@types/node": "^20.5.6",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
@@ -33,6 +32,7 @@
     "rollup-plugin-dotenv": "^0.5.0",
     "rollup-plugin-dts": "^5.3.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
     "tslib": "^2.6.0",
     "typescript": "^5.1.6"
   },
@@ -48,7 +48,5 @@
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/abdulrhmangoni"
-  },
-  "dependencies": {
   }
 }

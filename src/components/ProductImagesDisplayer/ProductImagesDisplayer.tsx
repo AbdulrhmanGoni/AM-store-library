@@ -27,9 +27,7 @@ export default function ProductImagesDisplayer({ images, isLoading, isError }: I
                             alt="product's image" src={current ?? ""}
                             sx={{
                                 width: "100%",
-                                maxHeight: "350px",
-                                minHeight: "270px",
-                                height: "auto",
+                                height: "400px",
                                 borderRadius: 0,
                                 "& > img": { objectFit: "contain" }
                             }}

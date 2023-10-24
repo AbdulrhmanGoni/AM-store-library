@@ -5,9 +5,9 @@ import dotenv from "rollup-plugin-dotenv"
 import image from '@rollup/plugin-image';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import dts from 'rollup-plugin-dts'
+import css from 'rollup-plugin-postcss'
+import packageJson from './package.json'
 // import terser from '@rollup/plugin-terser'
-
-const packageJson = require('./package.json');
 
 export default [
   {
@@ -25,6 +25,7 @@ export default [
       peerDepsExternal(),
       resolve(),
       image(),
+      css({ extract: 'gloabal.css' }),
       commonjs(),
       // terser(),
     ],
@@ -32,6 +33,7 @@ export default [
   {
     input: 'dist/cjs/types/src/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    plugins: [dts.default()]
+    plugins: [dts.default()],
+    external: [/\.css$/]
   },
 ]
