@@ -25,7 +25,7 @@ export default [
       peerDepsExternal(),
       resolve(),
       image(),
-      css({ extract: 'gloabal.css' }),
+      css({ extract: 'global.css' }),
       commonjs(),
       // terser(),
     ],

@@ -4,6 +4,7 @@
 
 * {
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 *::-webkit-scrollbar {
@@ -52,6 +53,27 @@
     justify-content: flex-end;
 }
 
+.flex-column-center-between {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-column-center-start {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.flex-column-center-end {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
 .flex-row {
     display: flex;
     flex-direction: row;
@@ -62,20 +84,48 @@
     flex-direction: column;
 }
 
+.a-center {
+    align-items: center;
+}
+
+.a-start {
+    align-items: flex-start;
+}
+
+.a-end {
+    align-items: flex-end;
+}
+
+.j-start {
+    justify-content: flex-start;
+}
+
+.j-end {
+    justify-content: flex-end;
+}
+
+.j-between {
+    justify-content: space-between;
+}
+
+.j-evenly {
+    justify-content: space-evenly;
+}
+
+.j-around {
+    justify-content: space-around;
+}
+
 .gap1 {
     gap: var(--gap-value);
 }
 
 .gap2 {
-    gap: var(--gap-value * 2);
+    gap: calc(var(--gap-value) * 2);
 }
 
 .gap3 {
-    gap: var(--gap-value * 3);
-}
-
-.gap4 {
-    gap: var(--gap-value * 4);
+    gap: calc(var(--gap-value) * 3);
 }
 
 .full-width {
@@ -92,4 +142,11 @@
 
 .full-height-vh {
     height: 100vh;
+}
+
+.centering {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

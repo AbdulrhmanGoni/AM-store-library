@@ -2,8 +2,8 @@ import React from "react";
 import { PromiseState } from "../../interfaces";
 import { Skeleton } from "@mui/material";
 
-interface DisplayerItemWithLoadingStateProps extends PromiseState {
-    element: JSX.Element,
+export interface DisplayerItemWithLoadingStateProps extends PromiseState {
+    element: JSX.Element | string | number,
     width?: number | string,
     height: number | string
 }

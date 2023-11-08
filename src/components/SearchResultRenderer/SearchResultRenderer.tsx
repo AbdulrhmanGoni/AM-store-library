@@ -11,16 +11,9 @@ interface SearchResultRendererProps extends SearchFieldProps {
 
 export default function SearchResultRenderer(props: SearchResultRendererProps) {
 
-    const { products, searchText, actionWithProductId, endItemIcon } = props
+    const { products, searchText, actionWithProductId, endItemIcon } = props;
 
-    const mark = (text?: string) => (
-        <Typography
-            component="mark"
-            sx={{ bgcolor: "primary.main", color: "text.primary" }}
-        >
-            {text ?? ""}
-        </Typography>
-    )
+    const mark = (text?: string) => (<Typography component="mark"> {text ?? ""}</Typography>);
 
     const listHeight = products.length > 6 ? 240 : products.length ? products.length * 40 : 40;
 
@@ -30,7 +23,10 @@ export default function SearchResultRenderer(props: SearchResultRendererProps) {
                 width: '100%', height: listHeight,
                 bgcolor: 'background.paper',
                 position: "absolute",
-                left: 0, top: "100%", zIndex: 100
+                left: 0, top: "100%", zIndex: 100,
+                border: "solid",
+                borderWidth: "0px 0px 1px 1px",
+                borderColor: "text.primary",
             }}
         >
             <List disablePadding sx={{

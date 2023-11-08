@@ -16,7 +16,7 @@ export type illustratorTypes =
     "network" | "unauthorized" | "waiting" | "waiting1" |
     "waiting2"
 
-interface ErrorThrowerProps {
+interface ErrorThrowerOptions {
     title: string,
     message?: string,
     fullPage?: boolean,
@@ -24,35 +24,36 @@ interface ErrorThrowerProps {
     paperStyle?: CSSProperties,
     disableHeight?: boolean,
     withRefreshButton?: boolean,
-    illustratorType: illustratorTypes,
     alertType?: "success" | "info" | "error" | "warning",
     hideAlertMsg?: boolean,
     children?: JSX.Element | JSX.Element[]
 }
+interface ErrorThrowerProps extends ErrorThrowerOptions {
+    illustratorType: illustratorTypes
+}
 
-const illustrator = {
+interface ErrorThrowerCustomProps extends ErrorThrowerOptions {
+    customIllustrator: string,
+}
+
+const illustrators = {
     empty, unexpected, server,
     network, notFound, waiting,
     waiting1, waiting2, unauthorized
 }
 
-export default function ErrorThrower(props: ErrorThrowerProps) {
+export default function ErrorThrower(props: ErrorThrowerProps | ErrorThrowerCustomProps) {
 
     let {
         message, title, fullPage,
         style, disableHeight,
         withRefreshButton,
         alertType, hideAlertMsg,
-        illustratorType, children,
-        paperStyle
+        children, paperStyle
     } = props;
 
-    const parentStyle = {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-    }
+    const { illustratorType } = props as ErrorThrowerProps
+    const { customIllustrator } = props as ErrorThrowerCustomProps
 
     const height = fullPage ? "100vh" : disableHeight ? null : "calc(100vh - 87px)"
     const containerOptions = fullPage ? {
@@ -66,24 +67,25 @@ export default function ErrorThrower(props: ErrorThrowerProps) {
         return <IconButton onClick={() => window.location.reload()}><Refresh /></IconButton>
     }
 
+    const imageSrc = illustratorType ? illustrators[illustratorType] : customIllustrator
+
     return (
-        <Box sx={{ ...parentStyle, ...containerOptions, height, width: "100%", ...style }} >
-            <Box sx={{ ...parentStyle, m: 1, gap: 1, maxWidth: "600px" }}>
+        <Box className="flex-column-center full-width" sx={{ ...containerOptions, height, ...style }} >
+            <Box className="flex-column-center" sx={{ m: 1, gap: 1, maxWidth: "600px" }}>
                 <Paper
                     elevation={2}
+                    className="flex-column-center full-width"
                     sx={{
-                        ...parentStyle,
                         p: 2,
                         position: "relative",
                         textAlign: "center",
-                        width: "100%",
                         ...paperStyle
                     }}>
                     <Typography variant='h6'>{title}</Typography>
                     <CardMedia
                         component={"img"}
                         sx={{ width: "100%" }}
-                        src={illustrator[illustratorType]}
+                        src={imageSrc}
                     />
                     {children}
                 </Paper>
