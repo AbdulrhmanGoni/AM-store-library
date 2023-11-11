@@ -1,1 +1,1 @@
-export { default } from './ErrorThrower';
+export { default as ErrorThrower } from './ErrorThrower';

@@ -1,1 +1,5 @@
-export { default, searchResponse, SearchFieldProps } from "./SearchForProductsField"
+export { 
+    default as SearchForProductsField, 
+    SearchFieldProps,
+    searchResponse 
+} from './SearchForProductsField';

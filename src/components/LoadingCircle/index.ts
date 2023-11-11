@@ -1,1 +1,1 @@
-export { default } from "./LoadingCircle"
+export { default as LoadingCircle } from './LoadingCircle';

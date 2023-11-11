@@ -13,7 +13,7 @@ export default function SearchResultRenderer(props: SearchResultRendererProps) {
 
     const { products, searchText, actionWithProductId, endItemIcon } = props;
 
-    const mark = (text?: string) => (<Typography component="mark"> {text ?? ""}</Typography>);
+    const mark = (text?: string) => (<Typography color="primary" component="mark"> {text ?? ""}</Typography>);
 
     const listHeight = products.length > 6 ? 240 : products.length ? products.length * 40 : 40;
 

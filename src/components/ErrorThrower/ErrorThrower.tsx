@@ -10,11 +10,12 @@ import waiting from "../../images/waiting.png"
 import waiting1 from "../../images/waiting1.png"
 import waiting2 from "../../images/waiting2.png"
 import unauthorized from "../../images/unauthorized.png"
+import signUp from "../../images/sign-up-illustrator.svg"
 
 export type illustratorTypes =
     "empty" | "server" | "notFound" | "unexpected" |
     "network" | "unauthorized" | "waiting" | "waiting1" |
-    "waiting2"
+    "waiting2" | "signUp"
 
 interface ErrorThrowerOptions {
     title: string,
@@ -26,20 +27,21 @@ interface ErrorThrowerOptions {
     withRefreshButton?: boolean,
     alertType?: "success" | "info" | "error" | "warning",
     hideAlertMsg?: boolean,
-    children?: JSX.Element | JSX.Element[]
+    children?: JSX.Element
 }
 interface ErrorThrowerProps extends ErrorThrowerOptions {
     illustratorType: illustratorTypes
 }
 
 interface ErrorThrowerCustomProps extends ErrorThrowerOptions {
-    customIllustrator: string,
+    customIllustrator: JSX.Element,
 }
 
 const illustrators = {
     empty, unexpected, server,
     network, notFound, waiting,
-    waiting1, waiting2, unauthorized
+    waiting1, waiting2, unauthorized,
+    signUp
 }
 
 export default function ErrorThrower(props: ErrorThrowerProps | ErrorThrowerCustomProps) {
@@ -64,14 +66,12 @@ export default function ErrorThrower(props: ErrorThrowerProps | ErrorThrowerCust
     } : {}
 
     const RefreshIcon = () => {
-        return <IconButton onClick={() => window.location.reload()}><Refresh /></IconButton>
+        return <IconButton onClick={() => location.reload()}><Refresh /></IconButton>
     }
-
-    const imageSrc = illustratorType ? illustrators[illustratorType] : customIllustrator
 
     return (
         <Box className="flex-column-center full-width" sx={{ ...containerOptions, height, ...style }} >
-            <Box className="flex-column-center" sx={{ m: 1, gap: 1, maxWidth: "600px" }}>
+            <Box className="flex-column-center gap1" sx={{ maxWidth: "570px" }}>
                 <Paper
                     elevation={2}
                     className="flex-column-center full-width"
@@ -79,14 +79,22 @@ export default function ErrorThrower(props: ErrorThrowerProps | ErrorThrowerCust
                         p: 2,
                         position: "relative",
                         textAlign: "center",
+                        "& img": {
+                            width: "100%",
+                            maxWidth: "450px",
+                            userSelect: "none"
+                        },
                         ...paperStyle
                     }}>
                     <Typography variant='h6'>{title}</Typography>
-                    <CardMedia
-                        component={"img"}
-                        sx={{ width: "100%" }}
-                        src={imageSrc}
-                    />
+                    {
+                        customIllustrator || (
+                            <CardMedia
+                                component={"img"}
+                                src={illustrators[illustratorType]}
+                            />
+                        )
+                    }
                     {children}
                 </Paper>
                 {!hideAlertMsg && <Alert

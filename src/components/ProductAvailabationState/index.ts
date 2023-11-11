@@ -1,1 +1,1 @@
-export { default } from "./ProductAvailabationState"
+export { default as ProductAvailabationState } from "./ProductAvailabationState"

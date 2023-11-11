@@ -1,1 +1,1 @@
-export { default } from "./ActionAlert";
+export { default as ActionAlert } from './ActionAlert';

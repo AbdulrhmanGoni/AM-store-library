@@ -1,5 +1,5 @@
 import { PromiseState } from '../../interfaces';
-import ErrorThrower from '../ErrorThrower';
+import { ErrorThrower } from '../ErrorThrower';
 import { Avatar, Box, Skeleton, useTheme } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 

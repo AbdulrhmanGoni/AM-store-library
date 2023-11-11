@@ -4,6 +4,7 @@ import typescript from '@rollup/plugin-typescript'
 import dotenv from "rollup-plugin-dotenv"
 import image from '@rollup/plugin-image';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
+import svg from '@svgr/rollup'
 import dts from 'rollup-plugin-dts'
 import css from 'rollup-plugin-postcss'
 import packageJson from './package.json'
@@ -25,6 +26,7 @@ export default [
       peerDepsExternal(),
       resolve(),
       image(),
+      svg(),
       css({ extract: 'global.css' }),
       commonjs(),
       // terser(),
