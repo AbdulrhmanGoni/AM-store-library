@@ -56,9 +56,9 @@ export default function AlertTooltip(props: AlertTooltipProps) {
                     variant="outlined"
                     className="flex-row-center-start"
                     sx={{
-                        p: "0 2px 0 6px",
-                        ".MuiAlert-message": { p: "3px 0px", flex: 1 },
-                        ".MuiAlert-icon": { mr: 1, p: "3px 0px" },
+                        p: "0 3px 0 6px",
+                        ".MuiAlert-message": { p: .5, flex: 1 },
+                        ".MuiAlert-icon": { mr: "0px", p: "0px" },
                         ".MuiSvgIcon-root": { width: "0.9em", height: "0.9em" },
                         ".MuiAlert-action": { p: "0px", m: "0px" }
                     }}
@@ -68,6 +68,7 @@ export default function AlertTooltip(props: AlertTooltipProps) {
                             size="small"
                             onClick={action}
                             color={type}
+                            sx={{ p: .5 }}
                         >
                             {actionIcon}
                         </IconButton>
