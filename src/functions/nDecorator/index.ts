@@ -1,1 +1,1 @@
-export { default } from './nDecorator';
+export { default as nDecorator } from './nDecorator';

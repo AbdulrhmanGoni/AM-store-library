@@ -1,1 +1,1 @@
-export { default } from './timeAgo';
+export { default as timeAgo } from './timeAgo';

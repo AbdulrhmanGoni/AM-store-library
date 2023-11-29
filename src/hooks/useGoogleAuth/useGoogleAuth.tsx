@@ -1,24 +1,7 @@
-import React from 'react'
-import { GoogleOAuthProvider } from '@react-oauth/google'
+import React from 'react';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import GoogleAuthButton from './GoogleAuthButton';
-import { CSSProperties } from '@mui/material/styles/createMixins';
-
-export interface onSuccessProps { access_token: string }
-export interface GoogleAuthUserInfo {
-    email?: string,
-    name?: string,
-    email_verified?: boolean
-}
-export interface GoogleAuthButtonProps {
-    text?: string,
-    mode?: "dark" | "light"
-    sx?: CSSProperties,
-    onSuccess: (userInfo: GoogleAuthUserInfo) => void,
-    onError?: () => void,
-    onClick?: () => void,
-    onAgree?: () => void,
-    onFinally?: () => void
-}
+import { GoogleAuthButtonProps } from './GoogleAuthButton';
 
 export default function useGoogleAuth() {
 

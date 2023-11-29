@@ -19,7 +19,7 @@ const timeAgo = (theTime: string): string => {
         months = days / 28,
         years = months / 12;
 
-    return seconds <= 60 ? "now"
+    return seconds <= 60 ? "Just Yet"
         : minutes <= 60 ? formatTime(minutes, "minute")
             : hours <= 24 ? formatTime(hours, "hour")
                 : days <= 14 ? formatTime(days, "day")

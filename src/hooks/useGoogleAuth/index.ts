@@ -1,1 +1,1 @@
-export { default } from './useGoogleAuth';
+export { default as useGoogleAuth } from './useGoogleAuth';

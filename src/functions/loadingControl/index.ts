@@ -1,1 +1,1 @@
-export { default } from "./loadingControl"
+export { default as loadingControl } from "./loadingControl"

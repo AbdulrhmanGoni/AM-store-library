@@ -1,1 +1,2 @@
-export { default as useGoogleAuth } from './useGoogleAuth';
+export * from './useGoogleAuth';
+export * from './useWhenElementAppears';

@@ -1,8 +1,24 @@
 import React from 'react'
-import { Button, Box } from '@mui/material'
+import { Button, Box, SxProps } from '@mui/material'
 import { useGoogleLogin } from '@react-oauth/google'
-import { GoogleAuthButtonProps, onSuccessProps } from './useGoogleAuth'
 import googleIcon from "../../images/google-icon.png"
+
+export interface onSuccessProps { access_token: string }
+export interface GoogleAuthUserInfo {
+    email?: string,
+    name?: string,
+    email_verified?: boolean
+}
+export interface GoogleAuthButtonProps {
+    text?: string,
+    mode?: "dark" | "light"
+    sx?: SxProps,
+    onSuccess: (userInfo: GoogleAuthUserInfo) => void,
+    onError?: () => void,
+    onClick?: () => void,
+    onAgree?: () => void,
+    onFinally?: () => void
+}
 
 export default function GoogleAuthButton(props: GoogleAuthButtonProps) {
 
