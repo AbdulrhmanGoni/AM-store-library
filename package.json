@@ -1,6 +1,6 @@
 {
   "name": "@abdulrhmangoni/am-store-library",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "Library containes the shared components which they can be used in clint-site and admin panel projects",
   "main": "dist/cjs/index.js",
   "files": [
