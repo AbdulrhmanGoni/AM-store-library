@@ -1,16 +1,17 @@
-import React, { CSSProperties, JSX } from 'react'
+import React, { JSX } from 'react'
 import { Refresh } from '@mui/icons-material'
-import { Alert, Box, CardMedia, IconButton, Paper, Typography } from '@mui/material';
-import empty from '../../images/empty.png';
-import unexpected from "../../images/unexpected.png";
-import server from "../../images/server.png";
-import network from "../../images/network.png"
-import notFound from "../../images/notFound.png"
-import waiting from "../../images/waiting.png"
-import waiting1 from "../../images/waiting1.png"
-import waiting2 from "../../images/waiting2.png"
-import unauthorized from "../../images/unauthorized.png"
-import signUp from "../../images/sign-up-illustrator.svg"
+import {
+    Alert, Box, CardMedia,
+    IconButton, Paper,
+    SxProps
+} from '@mui/material';
+import {
+    empty, unexpected, server,
+    network, notFound, waiting,
+    waiting1, waiting2, unauthorized,
+    signUp
+} from '../../images';
+import { P } from '../P';
 
 export type illustratorTypes =
     "empty" | "server" | "notFound" | "unexpected" |
@@ -21,8 +22,8 @@ interface ErrorThrowerOptions {
     title: string,
     message?: string,
     fullPage?: boolean,
-    style?: CSSProperties,
-    paperStyle?: CSSProperties,
+    style?: SxProps,
+    paperStyle?: SxProps,
     disableHeight?: boolean,
     withRefreshButton?: boolean,
     alertType?: "success" | "info" | "error" | "warning",
@@ -57,12 +58,13 @@ export default function ErrorThrower(props: ErrorThrowerProps | ErrorThrowerCust
     const { illustratorType } = props as ErrorThrowerProps
     const { customIllustrator } = props as ErrorThrowerCustomProps
 
-    const height = fullPage ? "100vh" : disableHeight ? null : "calc(100vh - 87px)"
-    const containerOptions = fullPage ? {
+    const height = fullPage ? "100vh" : disableHeight ? "initial" : "calc(100vh - 87px)"
+
+    const containerOptions: SxProps = fullPage ? {
         top: 0, left: 0,
         position: "absolute",
         backgroundColor: "background.default",
-        height: disableHeight ? null : "calc(100vh - 87px)"
+        height
     } : {}
 
     const RefreshIcon = () => {
@@ -70,7 +72,7 @@ export default function ErrorThrower(props: ErrorThrowerProps | ErrorThrowerCust
     }
 
     return (
-        <Box className="flex-column-center full-width" sx={{ ...containerOptions, height, ...style }} >
+        <Box className="flex-column-center full-width" sx={{ ...containerOptions, ...style }}>
             <Box className="flex-column-center gap1" sx={{ maxWidth: "570px" }}>
                 <Paper
                     elevation={2}
@@ -86,7 +88,7 @@ export default function ErrorThrower(props: ErrorThrowerProps | ErrorThrowerCust
                         },
                         ...paperStyle
                     }}>
-                    <Typography variant='h6'>{title}</Typography>
+                    <P variant='h6'>{title}</P>
                     {
                         customIllustrator || (
                             <CardMedia

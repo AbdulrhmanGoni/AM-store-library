@@ -1,15 +1,15 @@
-import React, { CSSProperties } from 'react';
-import { Box, CircularProgress } from '@mui/material';
+import React from 'react';
+import { Box, CircularProgress, SxProps } from '@mui/material';
 
 interface LoadingCircleProps {
-    style?: CSSProperties,
+    style?: SxProps,
     staticCircle?: boolean,
     darkBg?: boolean
 }
 
-function LoadingCircle({ style, staticCircle, darkBg }: LoadingCircleProps) {
+export default function LoadingCircle({ style, staticCircle, darkBg }: LoadingCircleProps) {
 
-    const startStyle = {
+    const startStyle: SxProps = {
         position: "fixed",
         top: 0, left: 0,
         minHeight: "100vh",
@@ -28,5 +28,3 @@ function LoadingCircle({ style, staticCircle, darkBg }: LoadingCircleProps) {
         </Box>
     );
 }
-
-export default LoadingCircle;

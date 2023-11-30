@@ -7,3 +7,4 @@ export * from './ElementWithLoadingState';
 export * from './SearchForProductsField';
 export * from "./ProductAvailabationState"
 export * from './AlertTooltip';
+export * from './P';

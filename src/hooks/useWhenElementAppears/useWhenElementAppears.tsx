@@ -27,5 +27,10 @@ export default function useWhenElementAppears(elementId: string, callback: () =>
         scrollElement.addEventListener('scroll', appearingMonitor);
         scrollElement.addEventListener('resize', appearingMonitor);
         appearingMonitor();
+
+        return () => {
+            scrollElement.removeEventListener('scroll', appearingMonitor);
+            scrollElement.removeEventListener('resize', appearingMonitor);
+        }
     }, [])
 }
