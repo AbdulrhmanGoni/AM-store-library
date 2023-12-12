@@ -107,6 +107,6 @@ export default function ErrorThrower(props: ErrorThrowerProps | ErrorThrowerCust
                     {message}
                 </Alert>}
             </Box>
-        </ Box >
+        </Box>
     )
 }
