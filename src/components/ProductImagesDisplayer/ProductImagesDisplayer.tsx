@@ -1,5 +1,5 @@
 import { PromiseState } from '../../interfaces';
-import { ErrorThrower } from '../ErrorThrower';
+import { IllustrationCard } from '../IllustrationCard';
 import { Avatar, Box, Skeleton, useTheme } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 
@@ -16,7 +16,7 @@ export default function ProductImagesDisplayer({ images, isLoading, isError }: I
         <Box sx={{ display: "flex", flexBasis: "50%", flexDirection: "column", gap: 1.5 }}>
             {
                 isLoading ? <Skeleton width={"100%"} height={350} variant="rounded" sx={{ bgcolor: "rgb(0 0 0 / 20%)" }} />
-                    : isError ? <ErrorThrower
+                    : isError ? <IllustrationCard
                         title='Filed To load images'
                         hideAlertMsg
                         disableHeight

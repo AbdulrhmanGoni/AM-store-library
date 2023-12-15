@@ -18,7 +18,7 @@ export type illustratorTypes =
     "network" | "unauthorized" | "waiting" | "waiting1" |
     "waiting2" | "signUp"
 
-interface ErrorThrowerOptions {
+interface IllustrationCardOptions {
     title: string,
     message?: string,
     fullPage?: boolean,
@@ -30,11 +30,11 @@ interface ErrorThrowerOptions {
     hideAlertMsg?: boolean,
     children?: JSX.Element
 }
-interface ErrorThrowerProps extends ErrorThrowerOptions {
+interface IllustrationCardProps extends IllustrationCardOptions {
     illustratorType: illustratorTypes
 }
 
-interface ErrorThrowerCustomProps extends ErrorThrowerOptions {
+interface IllustrationCardCustomProps extends IllustrationCardOptions {
     customIllustrator: JSX.Element,
 }
 
@@ -45,7 +45,7 @@ const illustrators = {
     signUp
 }
 
-export default function ErrorThrower(props: ErrorThrowerProps | ErrorThrowerCustomProps) {
+export default function IllustrationCard(props: IllustrationCardProps | IllustrationCardCustomProps) {
 
     let {
         message, title, fullPage,
@@ -55,8 +55,8 @@ export default function ErrorThrower(props: ErrorThrowerProps | ErrorThrowerCust
         children, paperStyle
     } = props;
 
-    const { illustratorType } = props as ErrorThrowerProps
-    const { customIllustrator } = props as ErrorThrowerCustomProps
+    const { illustratorType } = props as IllustrationCardProps
+    const { customIllustrator } = props as IllustrationCardCustomProps
 
     const height = fullPage ? "100vh" : disableHeight ? "initial" : "calc(100vh - 87px)"
 

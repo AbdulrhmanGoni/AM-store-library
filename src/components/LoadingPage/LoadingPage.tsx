@@ -1,5 +1,5 @@
 import React, { JSX } from 'react'
-import ErrorThrower, { illustratorTypes } from '../ErrorThrower/ErrorThrower'
+import IllustrationCard, { illustratorTypes } from '../IllustrationCard/IllustrationCard'
 import { CircularProgress, LinearProgress } from '@mui/material'
 
 type loadingType = {
@@ -33,7 +33,7 @@ export default function LoadingPage() {
     let randomIndex = Math.floor(Math.random() * loadingTypes.length)
     let { illustratorType, loadingElement } = loadingTypes[randomIndex];
     return (
-        <ErrorThrower
+        <IllustrationCard
             title=''
             illustratorType={illustratorType}
             fullPage
@@ -41,6 +41,6 @@ export default function LoadingPage() {
             style={{ p: { xs: 1, sm: 2 } }}
         >
             {loadingElement}
-        </ErrorThrower>
+        </IllustrationCard>
     )
 }

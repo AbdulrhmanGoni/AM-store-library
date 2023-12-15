@@ -1,1 +1,1 @@
-export { default as ErrorThrower } from './ErrorThrower';
+export { default as IllustrationCard } from './IllustrationCard';

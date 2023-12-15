@@ -1,5 +1,5 @@
 export { ActionAlert } from './ActionAlert';
-export { ErrorThrower } from './ErrorThrower';
+export { IllustrationCard } from './IllustrationCard';
 export { LoadingCircle } from './LoadingCircle';
 export { LoadingPage } from './LoadingPage';
 export { ProductImagesDisplayer } from './ProductImagesDisplayer';
