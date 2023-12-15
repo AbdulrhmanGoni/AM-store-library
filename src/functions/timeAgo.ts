@@ -1,4 +1,4 @@
-const timeAgo = (theTime: string): string => {
+export default function timeAgo(theTime: string): string {
     const
         allDate = new Date().getTime(),
         startDate = new Date(`${theTime}`).getTime(),
@@ -28,5 +28,3 @@ const timeAgo = (theTime: string): string => {
                             : formatTime(years, "year")
 
 }
-
-export default timeAgo

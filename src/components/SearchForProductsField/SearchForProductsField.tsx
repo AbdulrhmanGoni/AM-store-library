@@ -1,6 +1,6 @@
 import React, { useState, JSX, useEffect } from 'react';
 import { Box, CircularProgress, IconButton, IconButtonProps, TextField } from '@mui/material'
-import SearchResultRenderer from "../SearchResultRenderer"
+import SearchResultRenderer from "./SearchResultRenderer"
 import { Close, Replay } from '@mui/icons-material';
 
 

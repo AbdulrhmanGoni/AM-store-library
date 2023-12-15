@@ -1,5 +1,6 @@
-export { 
-    default as SearchForProductsField, 
+export {
+    default as SearchForProductsField,
     SearchFieldProps,
-    searchResponse 
+    searchResponse
 } from './SearchForProductsField';
+export { default as SearchResultRenderer } from "./SearchResultRenderer"
