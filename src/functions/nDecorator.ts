@@ -1,9 +1,10 @@
+import isNumber from "./isNumber";
+
 type nmOrSt = number | string
 type lands = "ar" | "en"
 type nDecoratorType = (number: nmOrSt, title?: boolean, language?: lands, decoreWith?: string) => string | number
 
 
-const isNumber = (n: string) => !isNaN(parseInt(n))
 const nDecorator: nDecoratorType = (number, title = false, language = "en", decoreWith = ",") => {
     if (isNumber(String(number))) {
         number = number.toString();

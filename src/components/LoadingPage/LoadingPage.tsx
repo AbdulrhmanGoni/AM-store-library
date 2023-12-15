@@ -38,6 +38,7 @@ export default function LoadingPage() {
             illustratorType={illustratorType}
             fullPage
             hideAlertMsg
+            style={{ p: { xs: 1, sm: 2 } }}
         >
             {loadingElement}
         </ErrorThrower>

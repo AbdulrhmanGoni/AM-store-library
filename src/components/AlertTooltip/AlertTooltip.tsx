@@ -51,6 +51,7 @@ export default function AlertTooltip(props: AlertTooltipProps) {
     return (
         <StyledTooltip
             title={
+                title &&
                 <Alert
                     severity={type}
                     variant="outlined"

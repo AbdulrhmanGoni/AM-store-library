@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, List, Typography, ListItem, ListItemButton } from '@mui/material';
-import { SearchFieldProps, searchResponse } from '../SearchForProductsField';
+import { SearchFieldProps, searchResponse } from '.';
 
 
 interface SearchResultRendererProps extends SearchFieldProps {

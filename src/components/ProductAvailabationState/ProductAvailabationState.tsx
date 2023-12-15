@@ -23,7 +23,7 @@ export default function ProductAvailabationState({ amount, visitAllAmount, style
             icon={false} color={amount > 3 ? "info" : amount ? "warning" : "error"}
             sx={{ p: "5px 8px", "& div": { p: 0 }, ...style }}>
             <Typography
-                sx={{ fontSize: { xs: disableResponsive ? ".8rem" : ".6rem", sm: ".8rem" } }}
+                sx={{ fontSize: { xs: disableResponsive ? ".82rem" : ".75rem", sm: ".8rem" } }}
                 variant='subtitle2'>
                 {howManyLeft()}
             </Typography>
