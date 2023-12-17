@@ -19,3 +19,4 @@ export { ProductAvailabationState } from "./ProductAvailabationState"
 export { AlertTooltip } from './AlertTooltip';
 export { P } from './P';
 export { PriceDisplayer } from "./PriceDisplayer"
+export { default as FetchFailedAlert } from "./FetchFailedAlert"

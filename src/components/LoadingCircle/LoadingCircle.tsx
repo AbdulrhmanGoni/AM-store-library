@@ -17,7 +17,7 @@ export default function LoadingCircle({ style, staticCircle, darkBg }: LoadingCi
         display: staticCircle ? "none" : "flex",
         justifyContent: "center",
         alignItems: "center",
-        zIndex: 1000,
+        zIndex: 1300,
         backgroundColor: darkBg ? "#00000080" : "tranparent",
         ...style
     }

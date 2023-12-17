@@ -64,7 +64,8 @@ export default function IllustrationCard(props: IllustrationCardProps | Illustra
         top: 0, left: 0,
         position: "absolute",
         backgroundColor: "background.default",
-        height
+        height,
+        flex: 1
     } : {}
 
     const RefreshIcon = () => {
@@ -72,7 +73,7 @@ export default function IllustrationCard(props: IllustrationCardProps | Illustra
     }
 
     return (
-        <Box className="flex-column-center full-width" sx={{ ...containerOptions, ...style }}>
+        <Box className="flex-column-center full-width full-height" sx={{ ...containerOptions, ...style }}>
             <Box className="flex-column-center gap1" sx={{ maxWidth: "570px" }}>
                 <Paper
                     elevation={2}

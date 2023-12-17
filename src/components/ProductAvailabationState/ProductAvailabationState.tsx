@@ -12,9 +12,9 @@ export default function ProductAvailabationState({ amount, visitAllAmount, style
 
     let howManyLeft = () => {
         if (visitAllAmount) {
-            return !amount ? "Out Of Stock" : amount < 6 ? `${amount} Left` : amount < 11 ? `${amount} Left` : "Available"
-        } else {
             return amount ? `${amount} Left` : "Out Of Stock"
+        } else {
+            return !amount ? "Out Of Stock" : amount < 6 ? `${amount} Left` : amount < 11 ? `${amount} Left` : "Available"
         }
     }
 

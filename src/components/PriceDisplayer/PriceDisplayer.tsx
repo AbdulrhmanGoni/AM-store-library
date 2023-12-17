@@ -33,7 +33,7 @@ export default function PriceDisplayer(props: PriceDisplayerProps) {
             }}
         >
             {
-                discount &&
+                !!discount &&
                 <Box
                     className='flex-row-center gap1'
                     sx={{ fontSize: currencyFontSize, ml: 1 }}
@@ -50,16 +50,16 @@ export default function PriceDisplayer(props: PriceDisplayerProps) {
                 </Box>
             }
             <Box className="flex-row">
-                <span
+                <Box component="span"
                     style={{
                         fontSize: currencyFontSize,
-                        transform: "translate(0px, -5px)",
+                        transform: "translate(0px, -1px)",
                         display: "inline-block",
                         margin: "0 2px 0 0",
                         ...style
                     }}>
                     {currency}
-                </span>
+                </Box>
                 <P sx={{ fontSize: priceFontSize, ...style }}>
                     {operator ?? null}{nDecorator((discount ? applyDiscount(price, discount) : price)?.toFixed(2))}
                 </P>
