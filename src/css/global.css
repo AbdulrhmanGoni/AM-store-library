@@ -1,5 +1,6 @@
 :root {
-    --gap-value: 8px
+    --gap-value: 8px;
+    --padding-value: 8px;
 }
 
 * {
@@ -9,7 +10,7 @@
 
 *::-webkit-scrollbar {
     width: 3px;
-    height: 6px
+    height: 6px;
 }
 
 .flex-center {
@@ -116,6 +117,34 @@
     justify-content: space-around;
 }
 
+.p1 {
+    padding: var(--padding-value);
+}
+
+.p2 {
+    padding: calc(var(--padding-value) * 2);
+}
+
+.py1 {
+    padding-top: var(--padding-value);
+    padding-bottom: var(--padding-value);
+}
+
+.py2 {
+    padding-top: calc(var(--padding-value) * 2);
+    padding-bottom: calc(var(--padding-value) * 2);
+}
+
+.px1 {
+    padding-left: var(--padding-value);
+    padding-right: var(--padding-value);
+}
+
+.px2 {
+    padding-left: calc(var(--padding-value) * 2);
+    padding-right: calc(var(--padding-value) * 2);
+}
+
 .gap1 {
     gap: var(--gap-value);
 }
@@ -149,4 +178,40 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.limitationLines1,
+.limitationLines2,
+.limitationLines3,
+.limitationLines4,
+.limitationLines5 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.limitationLines1 {
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+}
+
+.limitationLines2 {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+}
+
+.limitationLines3 {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+}
+
+.limitationLines4 {
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+}
+
+.limitationLines5 {
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
 }

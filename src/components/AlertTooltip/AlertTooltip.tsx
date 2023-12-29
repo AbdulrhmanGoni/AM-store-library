@@ -17,6 +17,7 @@ interface AlertTooltipProps {
     fSize?: number,
     action?: () => void,
     actionIcon?: JSX.Element,
+    hideAlertIcon?: boolean,
     children: JSX.Element,
 }
 
@@ -29,6 +30,7 @@ export default function AlertTooltip(props: AlertTooltipProps) {
         color = "#fff",
         fSize = 16,
         actionIcon,
+        hideAlertIcon,
         action,
         children
     } = props;
@@ -63,6 +65,7 @@ export default function AlertTooltip(props: AlertTooltipProps) {
                         ".MuiSvgIcon-root": { width: "0.9em", height: "0.9em" },
                         ".MuiAlert-action": { p: "0px", m: "0px" }
                     }}
+                    icon={hideAlertIcon ? false : undefined}
                     action={
                         actionIcon && action &&
                         <IconButton

@@ -38,15 +38,15 @@ export default function PriceDisplayer(props: PriceDisplayerProps) {
                     className='flex-row-center gap1'
                     sx={{ fontSize: currencyFontSize, ml: 1 }}
                 >
-                    <span
+                    <P
                         style={{
                             color: 'gray',
                             textDecoration: "line-through"
                         }}
                     >
                         {price?.toFixed(2)}
-                    </span>
-                    <span style={{ color: 'red' }}>{discount * 100}%</span>
+                    </P>
+                    <P style={{ color: 'red' }}>{discount * 100}%</P>
                 </Box>
             }
             <Box className="flex-row">
