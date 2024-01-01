@@ -39,6 +39,7 @@ export default function PriceDisplayer(props: PriceDisplayerProps) {
                     sx={{ fontSize: currencyFontSize, ml: 1 }}
                 >
                     <P
+                        variant='body2'
                         style={{
                             color: 'gray',
                             textDecoration: "line-through"
@@ -46,7 +47,7 @@ export default function PriceDisplayer(props: PriceDisplayerProps) {
                     >
                         {price?.toFixed(2)}
                     </P>
-                    <P style={{ color: 'red' }}>{discount * 100}%</P>
+                    <P variant='body2' style={{ color: 'red' }}>{discount * 100}%</P>
                 </Box>
             }
             <Box className="flex-row">
