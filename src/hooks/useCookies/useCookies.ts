@@ -1,17 +1,12 @@
 import { useEffect, useState } from "react"
-
-type Cookies = { [key: string]: string }
+import cookiesParser, { Cookies } from "../../functions/cookiesParser"
 
 export default function useCookies() {
 
     const [cookies, setCookies] = useState<Cookies>({})
 
     useEffect(() => {
-        const cookies: Cookies = {}
-        document.cookie.split("; ").forEach(cookie => {
-            const [key, value] = cookie.split("=")
-            cookies[key] = value
-        })
+        const cookies = cookiesParser()
         setCookies(cookies)
     }, [])
 
