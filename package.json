@@ -1,6 +1,6 @@
 {
   "name": "@abdulrhmangoni/am-store-library",
-  "version": "1.8.0",
+  "version": "0.8.0",
   "description": "A library containes the shared components between clint site project and admin panel",
   "main": "dist/cjs/index.js",
   "files": [
@@ -45,7 +45,6 @@
     "@react-oauth/google": "^0.11.1",
     "@types/react": "^18.2.21",
     "axios": "^1.6.3",
-    "react-cookie": "^7.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

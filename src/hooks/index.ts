@@ -9,3 +9,4 @@ export {
 } from './useWhenElementAppears';
 
 export { default as useSlicedFetch } from "./useSlicedFetch"
+export { default as useCookies } from "./useCookies"
