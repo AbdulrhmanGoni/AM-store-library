@@ -1,4 +1,4 @@
 export interface PromiseState {
     isLoading?: boolean,
-    isError?: boolean,
+    isError?: boolean
 }

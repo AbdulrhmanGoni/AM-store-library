@@ -1,7 +1,5 @@
-declare module "*.css";
-
 declare module '*.css' {
-    const css: any;
+    const css: string;
     export default css;
 }
 

@@ -7,3 +7,5 @@ export {
     default as useWhenElementAppears,
     isElementInViewport
 } from './useWhenElementAppears';
+
+export { default as useSlicedFetch } from "./useSlicedFetch"
