@@ -7,15 +7,22 @@ interface SearchResultRendererProps extends SearchFieldProps {
     products: searchResponse[],
     searchText: string,
     actionWithProductId: (id: string) => void
+    close: () => void,
+    closeOnClick?: boolean,
 }
 
 export default function SearchResultRenderer(props: SearchResultRendererProps) {
 
-    const { products, searchText, actionWithProductId, endItemIcon } = props;
+    const { products, searchText, actionWithProductId, endItemIcon, close, closeOnClick } = props;
 
     const mark = (text?: string) => (<Typography color="primary" component="mark"> {text ?? ""}</Typography>);
 
     const listHeight = products.length > 6 ? 240 : products.length ? products.length * 40 : 40;
+
+    function onclick(_id: string) {
+        actionWithProductId(_id);
+        closeOnClick && close()
+    }
 
     return (
         <Box
@@ -44,7 +51,7 @@ export default function SearchResultRenderer(props: SearchResultRendererProps) {
 
                             return (
                                 <ListItem key={_id} component="div" disablePadding>
-                                    <ListItemButton onClick={() => actionWithProductId(_id)} sx={{ justifyContent: "space-between" }}>
+                                    <ListItemButton onClick={() => onclick(_id)} sx={{ justifyContent: "space-between" }}>
                                         <Typography component="p">
                                             {splitedText.map((str, index) =>
                                                 <Typography component="span" key={str + index}>

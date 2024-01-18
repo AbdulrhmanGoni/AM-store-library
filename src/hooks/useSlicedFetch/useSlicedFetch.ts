@@ -10,7 +10,7 @@ interface UseSlicedFetchOptions {
     autoFetchingFirstSlice?: boolean
 }
 
-export default function useSlicedFetch<T>(path: string, contentName: string, options?: UseSlicedFetchOptions) {
+export default function useSlicedFetch<T>(url: string, contentName: string, options?: UseSlicedFetchOptions) {
 
     const {
         defaultSliceSize = 10,
@@ -38,7 +38,7 @@ export default function useSlicedFetch<T>(path: string, contentName: string, opt
             const queries = `${queryParams}&${sliceParams}`;
 
             setIsLoading(true);
-            axios.get(`${path}?${queries}`, { headers: requestHeaders })
+            axios.get(`${url}?${queries}`, { headers: requestHeaders })
                 .then((response) => {
                     const { [contentName]: items, thereIsMore } = response.data
                     if (items) {

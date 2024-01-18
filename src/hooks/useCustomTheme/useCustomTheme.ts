@@ -6,7 +6,7 @@ export default function useCustomTheme({ modeCookieName }: { modeCookieName: str
 
     const { cookies: { [modeCookieName]: mode }, addCookie } = useCookies();
     const primaryColor = colors.indigo["A400"]
-    const lightBackground = { default: "#f9f9f9", paper: "#fff" }
+    const lightBackground = { default: "#f6f6f6", paper: "#fff" }
     const darkBackground = { default: "#111936", paper: "#0a1336" }
     const isLightMode = mode === "light"
     const textColor = isLightMode ? "#000" : "#fff"

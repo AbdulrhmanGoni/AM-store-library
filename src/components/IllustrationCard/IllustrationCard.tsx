@@ -76,7 +76,6 @@ export default function IllustrationCard(props: IllustrationCardProps | Illustra
         <Box className="flex-column-center full-width full-height" sx={{ ...containerOptions, ...style }}>
             <Box className="flex-column-center gap1" sx={{ maxWidth: "570px" }}>
                 <Paper
-                    elevation={2}
                     className="flex-column-center full-width"
                     sx={{
                         p: 2,

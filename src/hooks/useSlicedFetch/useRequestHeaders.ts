@@ -28,7 +28,7 @@ export default function useRequestHeaders() {
                 null
 
     const headers = {
-        'access-token': token,
+        'authorization': `Bearer ${token}`,
         'token-id': tokenId,
         'Content-Type': 'application/json',
     }

@@ -1,4 +1,4 @@
-import React, { useState, JSX, useEffect } from 'react';
+import React, { useState, JSX, useEffect, useRef } from 'react';
 import { Box, CircularProgress, IconButton, IconButtonProps, TextField } from '@mui/material'
 import SearchResultRenderer from "./SearchResultRenderer"
 import { Close, Replay } from '@mui/icons-material';
@@ -13,7 +13,8 @@ export interface SearchFieldProps {
     onEnter?: (searchInput: string) => void,
     fieldSize?: "small" | "medium",
     disableResultsList?: boolean,
-    additionalFilter?: string
+    additionalFilter?: string,
+    closeOnClick?: boolean
 }
 
 export default function SearchForProductsField(props: SearchFieldProps) {
@@ -26,9 +27,11 @@ export default function SearchForProductsField(props: SearchFieldProps) {
         onEnter,
         defaultValue,
         disableResultsList,
-        additionalFilter
+        additionalFilter,
+        closeOnClick
     } = props;
 
+    const inputRef = useRef<HTMLInputElement | undefined>();
     const [searchInput, setSearchInput] = useState<string>("");
     const [searchKey, setSearchKey] = useState<string>("");
     const [products, setProducts] = useState<searchResponse[]>([]);
@@ -107,10 +110,14 @@ export default function SearchForProductsField(props: SearchFieldProps) {
                 inputProps={{ sx: { pr: "40px" } }}
                 label="Search for products"
                 id='searchProductsField'
+                inputRef={inputRef}
                 value={searchInput}
                 error={isError}
                 size={fieldSize}
                 fullWidth
+                onFocus={() => {
+                    !disableResultsList && !ableResultsList && setAbleResultsList(true)
+                }}
                 onKeyDown={(event) => {
                     if (event.key === "Enter" || event.code === "Enter") {
                         let input = event.target as HTMLInputElement
@@ -146,6 +153,11 @@ export default function SearchForProductsField(props: SearchFieldProps) {
                     products={filterProducts(products)}
                     searchText={searchInput}
                     endItemIcon={endItemIcon}
+                    close={() => {
+                        setAbleResultsList(false);
+                        inputRef.current?.blur()
+                    }}
+                    closeOnClick={closeOnClick}
                 />
             }
         </Box>

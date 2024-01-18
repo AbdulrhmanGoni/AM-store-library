@@ -17,13 +17,14 @@ export default function useWhenElementAppears(elementId: string, callback: () =>
     }
 
     useEffect(() => {
-        let scrollElement: HTMLElement | Window = window;
+        let scrollElement: HTMLElement | Document = document;
         if (options?.scrollElementId) {
             const customScrollElement = document.getElementById(options.scrollElementId);
             if (customScrollElement) {
                 scrollElement = customScrollElement;
             }
         }
+
         scrollElement.addEventListener('scroll', appearingMonitor);
         scrollElement.addEventListener('resize', appearingMonitor);
         appearingMonitor();
