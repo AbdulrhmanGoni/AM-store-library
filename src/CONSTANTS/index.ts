@@ -1,0 +1,1 @@
+export { default as foundingYear } from "./foundingYear"

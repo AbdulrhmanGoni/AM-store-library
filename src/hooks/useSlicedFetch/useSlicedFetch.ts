@@ -73,7 +73,7 @@ export default function useSlicedFetch<T>(url: string, contentName: string, opti
     useEffect(() => { autoFetchingFirstSlice && setSliceNumber(1) }, []);
 
     function getNextSlice() { !thereIsNoMore && setSliceNumber(state => ++state); }
-    function refetch() { setRefetch(state => state); }
+    function refetch() { setRefetch(state => ++state); }
 
     function addNewItem(item: T, itemId: string) {
         setItems((state) => [item, ...state]);

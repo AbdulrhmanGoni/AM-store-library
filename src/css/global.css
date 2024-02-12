@@ -13,6 +13,21 @@
     height: 6px;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.disabled-element {
+    opacity: 0.5;
+    pointer-events: none;
+    color: rgb(136, 136, 136);
+
+    * {
+        pointer-events: none;
+    }
+}
+
 .flex-center {
     display: flex;
     align-items: center;
