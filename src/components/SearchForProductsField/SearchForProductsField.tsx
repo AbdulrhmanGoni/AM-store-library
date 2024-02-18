@@ -50,7 +50,6 @@ export default function SearchForProductsField(props: SearchFieldProps) {
         fetch(`${hostName}/products?title=${searchKey}&returnType=title&${additionalFilter}`)
             .then((res) => {
                 if (res.status == 200) return res.json();
-                else if (res.status == 404) return [];
                 else return null;
             })
             .then((data) => {

@@ -33,5 +33,5 @@ export default function useWhenElementAppears(elementId: string, callback: () =>
             scrollElement.removeEventListener('scroll', appearingMonitor);
             scrollElement.removeEventListener('resize', appearingMonitor);
         }
-    }, [])
+    }, [elementId])
 }
