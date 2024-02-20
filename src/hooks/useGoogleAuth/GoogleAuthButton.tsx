@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Box, SxProps } from "@mui/material";
+import { Button, SxProps } from "@mui/material";
 import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
 import googleIcon from "../../images/google-icon.png";
 
@@ -11,6 +11,8 @@ export interface GoogleAuthButtonProps {
   text?: string;
   mode?: "dark" | "light";
   sx?: SxProps;
+  googleScriptLoadSuccess?: boolean;
+  googleScriptLoadError?: boolean;
   onSuccess: (googleUserCredentials: GoogleUserCredentials) => void;
   onError?: () => void;
   onClick?: () => void;
@@ -18,7 +20,12 @@ export interface GoogleAuthButtonProps {
 }
 
 export default function GoogleAuthButton(props: GoogleAuthButtonProps) {
-  let { text, mode, sx, onSuccess, onError, onClick, onFinally } = props;
+  let {
+    text, mode, sx,
+    googleScriptLoadSuccess, googleScriptLoadError,
+    onSuccess, onError, onClick, onFinally
+  } = props;
+
   let isDark = mode === "dark";
   const loginWithGoogle = useGoogleLogin({ onSuccess, onError });
 
@@ -31,6 +38,7 @@ export default function GoogleAuthButton(props: GoogleAuthButtonProps) {
   return (
     <Button
       onClick={click}
+      disabled={!googleScriptLoadSuccess || googleScriptLoadError}
       sx={{
         width: "100%",
         bgcolor: isDark ? "black" : "white",

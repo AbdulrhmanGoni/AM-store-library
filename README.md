@@ -9,7 +9,8 @@ and avoid code duplication in AM Store's client site and Admin Panel.
 
 ## Technologies
 
-- JavaScript <img src="./assets/javascript.svg" style="width: 15px;height: 15px; transform: translate(3px, 3px)">
-- React.js <img src="./assets/react.svg" style="width: 20px;height: 17px; transform: translate(3px, 3px)">
-- Material UI <img src="./assets/Material-UI.svg" style="width: 20px;height: 15px; transform: translate(3px, 3px)">
-- Rollup <img src="./assets/rollup.svg" style="width: 15px;height: 15px; transform: translate(3px, 3px)">
+- JavaScript <img src="./icons_readme/javascript.svg" style="width: 15px;height: 15px; transform: translate(3px, 3px)">
+- TypeScript <img src="./icons_readme/typescript.svg" style="width: 15px;height: 15px; transform: translate(3px, 3px)">
+- React.js <img src="./icons_readme/react.svg" style="width: 20px;height: 17px; transform: translate(3px, 3px)">
+- Material UI <img src="./icons_readme/Material-UI.svg" style="width: 20px;height: 15px; transform: translate(3px, 3px)">
+- Rollup <img src="./icons_readme/rollup.svg" style="width: 15px;height: 15px; transform: translate(3px, 3px)">
