@@ -35,13 +35,15 @@ export default function GoogleAuthButton(props: GoogleAuthButtonProps) {
     onFinally?.();
   }
 
+  const googleScriptDidntLoad = !googleScriptLoadSuccess || googleScriptLoadError;
+
   return (
     <Button
       onClick={click}
-      disabled={!googleScriptLoadSuccess || googleScriptLoadError}
+      disabled={googleScriptDidntLoad}
       sx={{
         width: "100%",
-        bgcolor: isDark ? "black" : "white",
+        bgcolor: googleScriptDidntLoad ? "#888888" : isDark ? "black" : "white",
         color: isDark ? "white" : "black",
         "&:hover": {
           bgcolor: isDark ? "#141414" : "rgb(237 237 237)",
@@ -56,6 +58,7 @@ export default function GoogleAuthButton(props: GoogleAuthButtonProps) {
           height: "35px",
           marginRight: "8px",
           userSelect: "none",
+          opacity: googleScriptDidntLoad ? .4 : 1
         }}
         alt="Google logo"
         draggable={false}
