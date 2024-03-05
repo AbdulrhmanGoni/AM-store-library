@@ -1,6 +1,6 @@
 {
   "name": "@abdulrhmangoni/am-store-library",
-  "version": "0.9.13",
+  "version": "0.9.14",
   "description": "A library containes the shared components, hooks and function between the clint site and admin panel of AM Store project",
   "main": "dist/cjs/index.js",
   "files": [
@@ -10,7 +10,11 @@
   "scripts": {
     "rollup": "rm -rf dist/ && rollup -c --bundleConfigAsCjs && npm publish"
   },
-  "author": "Abdulrhman Goni",
+  "author": {
+    "name": "Abdulrhman Goni",
+    "email": "abdulrhmangoni@gmail.com",
+    "url": "https://github.com/abdulrhmangoni/AM-store-library"
+  },
   "license": "MIT",
   "type": "module",
   "keywords": [
@@ -48,7 +52,15 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abdulrhmangoni/AM-store-library.git"
+  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/abdulrhmangoni"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/abdulrhmangoni/AM-store-library/issues"
+  },
+  "homepage": "https://github.com/abdulrhmangoni/AM-store-library#readme"
 }
