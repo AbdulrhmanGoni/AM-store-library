@@ -43,10 +43,10 @@ export default function GoogleAuthButton(props: GoogleAuthButtonProps) {
       disabled={googleScriptDidntLoad}
       sx={{
         width: "100%",
-        bgcolor: googleScriptDidntLoad ? "#888888" : isDark ? "black" : "white",
+        bgcolor: googleScriptDidntLoad ? "#88888888" : isDark ? "black" : "white",
         color: isDark ? "white" : "black",
         "&:hover": {
-          bgcolor: isDark ? "#141414" : "rgb(237 237 237)",
+          bgcolor: isDark ? "#141414" : "rgb(214 214 214)",
         },
         ...sx,
       }}

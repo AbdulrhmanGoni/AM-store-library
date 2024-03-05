@@ -8,7 +8,7 @@ import svg from '@svgr/rollup'
 import dts from 'rollup-plugin-dts'
 import css from 'rollup-plugin-postcss'
 import packageJson from './package.json'
-// import terser from '@rollup/plugin-terser'
+import terser from '@rollup/plugin-terser'
 
 export default [
   {
@@ -29,7 +29,7 @@ export default [
       svg(),
       css({ extract: 'global.css' }),
       commonjs(),
-      // terser(),
+      terser(),
     ],
   },
   {
