@@ -17,10 +17,10 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
-      - name: Install rollup
-        run: npm install --save-dev rollup
       - name: Upgrade package version
         run: npm version minor
+      - name: Install rollup
+        run: npm install --save-dev rollup
 
       - name: build the library using rollup
         run: npm run rollup
