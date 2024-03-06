@@ -1,5 +1,5 @@
 {
-  "name": "@AbdulrhmanGoni/am-store-library",
+  "name": "@abdulrhmangoni/am-store-library",
   "version": "1.0.0",
   "description": "A library containes the shared components, hooks and function between the clint site and admin panel of AM Store project",
   "main": "dist/cjs/index.js",
