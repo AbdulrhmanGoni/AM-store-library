@@ -17,8 +17,6 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
-      - name: Upgrade package version
-        run: npm version minor
       - name: Install rollup
         run: npm install --save-dev rollup
 
@@ -29,6 +27,9 @@ jobs:
         with:
           node-version: "18.17.1"
           registry-url: "https://registry.npmjs.org"
+
+      - name: Upgrade package version
+        run: npm version minor
 
       - run: npm publish --provenance --access public
         env:
