@@ -21,7 +21,7 @@ jobs:
         run: npm install --save-dev rollup
 
       - name: build the library using rollup
-        run: npm run build
+        run: npm run rollup
 
       - uses: actions/setup-node@v4
         with:
