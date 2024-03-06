@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import GoogleAuthButton, { GoogleAuthButtonProps } from './GoogleAuthButton';
 
-export default function useGoogleAuth() {
+export default function useGoogleAuth({ clientId }: { clientId: string }) {
 
     const [googleScriptLoadSuccess, setGoogleScriptLoadSuccess] = useState(false);
     const [googleScriptLoadError, setGoogleScriptLoadError] = useState(false);
@@ -13,7 +13,7 @@ export default function useGoogleAuth() {
 
         return (
             <GoogleOAuthProvider
-                clientId={process.env.REACT_APP_CLIENT_ID || ""}
+                clientId={clientId}
                 onScriptLoadSuccess={() => {
                     setGoogleScriptLoadSuccess(true);
                     googleScriptLoadError && setGoogleScriptLoadError(false);

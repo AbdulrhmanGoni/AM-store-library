@@ -48,7 +48,7 @@ export default function GoogleAuthButton(props: GoogleAuthButtonProps) {
         "&:hover": {
           bgcolor: isDark ? "#141414" : "rgb(214 214 214)",
         },
-        ...sx,
+        ...sx
       }}
     >
       <img
