@@ -1,0 +1,33 @@
+name: Publish AM Store Library to npm registry
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install rollup
+        run: npm install --save-dev rollup
+
+      - name: build the library using rollup
+        run: npm run build
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18.17.1"
+          registry-url: "https://registry.npmjs.org"
+
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
