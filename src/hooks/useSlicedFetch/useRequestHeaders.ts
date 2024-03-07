@@ -1,6 +1,11 @@
 import useCookies from "../useCookies"
 
-export default function useRequestHeaders() {
+export interface useRequestHeadersProps {
+    isAdminsRequest?: boolean,
+    isUsersRequest?: boolean
+}
+
+export default function useRequestHeaders({ isUsersRequest, isAdminsRequest }: useRequestHeadersProps) {
 
     const {
         cookies: {
@@ -10,12 +15,6 @@ export default function useRequestHeaders() {
             "access-token": accessToken
         }
     } = useCookies()
-
-    const adminPanelHost = process.env.REACT_APP_ADMIN_PANEL_HOST_NAME
-    const amStoreHost = process.env.REACT_APP_AM_STORE_HOST_NAME
-
-    const isUsersRequest = window.location.host === amStoreHost
-    const isAdminsRequest = window.location.host === adminPanelHost
 
     const token =
         isUsersRequest ? accessToken :

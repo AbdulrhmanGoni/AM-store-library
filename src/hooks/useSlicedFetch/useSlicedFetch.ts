@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import useRequestHeaders from "./useRequestHeaders";
+import useRequestHeaders, { useRequestHeadersProps } from "./useRequestHeaders";
 import axios from "axios";
 
-interface UseSlicedFetchOptions {
+interface UseSlicedFetchOptions extends useRequestHeadersProps {
     defaultSliceSize?: number,
     defaultSliceNumber?: number,
     queryParams?: string,
@@ -17,7 +17,9 @@ export default function useSlicedFetch<T>(url: string, contentName: string, opti
         defaultSliceNumber = 0,
         queryParams = "",
         itemsIdPropertyName,
-        autoFetchingFirstSlice
+        autoFetchingFirstSlice,
+        isAdminsRequest,
+        isUsersRequest
     } = options ?? {};
 
     const [items, setItems] = useState<T[]>([]);
@@ -30,7 +32,7 @@ export default function useSlicedFetch<T>(url: string, contentName: string, opti
     const [newItemsList, setNewItemsList] = useState<string[]>([]);
     const [fetchedSlices, setFetchedSlices] = useState<number>(0);
 
-    const requestHeaders = useRequestHeaders();
+    const requestHeaders = useRequestHeaders({ isAdminsRequest, isUsersRequest });
 
     useEffect(() => {
         if (sliceNumber > fetchedSlices && !thereIsNoMore) {
