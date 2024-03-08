@@ -15,7 +15,7 @@ export default function CustomThemeProvider({ children, site }: CustomThemeProvi
 
     const modeCookieName = site === "admin-panel" ? "AM_Store_admind_panel_theme" : "AM_Store_client_site_theme"
 
-    const { theme, switchTheme } = useCustomTheme({ modeCookieName });
+    const { theme, switchTheme } = useCustomTheme(modeCookieName);
 
     return (
         <ThemeProvider theme={theme}>
