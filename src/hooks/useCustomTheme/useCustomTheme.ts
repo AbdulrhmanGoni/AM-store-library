@@ -2,9 +2,9 @@ import { createTheme, colors } from "@mui/material";
 import useCookies from "../useCookies";
 
 
-export default function useCustomTheme({ modeCookieName }: { modeCookieName: string }) {
+export default function useCustomTheme(modeCookieName?: string) {
 
-    const { cookies: { [modeCookieName]: mode }, addCookie } = useCookies();
+    const { cookies: { [modeCookieName || ""]: mode }, addCookie } = useCookies();
     const primaryColor = colors.indigo["A400"]
     const lightBackground = { default: "#f6f6f6", paper: "#fff" }
     const darkBackground = { default: "#111936", paper: "#0a1336" }
@@ -13,8 +13,10 @@ export default function useCustomTheme({ modeCookieName }: { modeCookieName: str
     const successColor = "#11cb1a"
 
     function switchTheme() {
-        let newNede = mode === "light" ? "dark" : "light"
-        addCookie(modeCookieName, newNede)
+        if (modeCookieName) {
+            let newNede = mode === "light" ? "dark" : "light"
+            addCookie(modeCookieName, newNede)
+        }
     }
 
     const theme = createTheme({
