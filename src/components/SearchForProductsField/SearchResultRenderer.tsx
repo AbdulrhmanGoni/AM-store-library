@@ -42,9 +42,9 @@ export default function SearchResultRenderer(props: SearchResultRendererProps) {
                 overflow: "auto"
             }}>
                 {
-                    !!products.length ?
+                    products.length ?
                         products.map(({ _id, title }) => {
-                            let regExp = new RegExp(searchText.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1"), "ig");
+                            const regExp = new RegExp(searchText.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1"), "ig");
                             const
                                 matched = title.match(regExp),
                                 splitedText = title.split(regExp);
