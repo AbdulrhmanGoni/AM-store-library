@@ -25,9 +25,12 @@ export default [
       typescript(),
       peerDepsExternal(),
       resolve(),
+      svg(),
+      css({ extract: 'global.css' }),
+      commonjs(),
       url({
-        destDir: 'dist/assets/',
-        publicPath: process.env.NODE_ENV === "development" ? 'http://localhost:8000/dist/assets/' : './assets/',
+        destDir: 'dist/cjs/assets/',
+        publicPath: './assets/',
         fileName: '[name]-[hash][extname]',
         include: [
           '**/*.svg',
@@ -37,9 +40,6 @@ export default [
         ],
         limit: 0
       }),
-      svg(),
-      css({ extract: 'global.css' }),
-      commonjs(),
       terser(),
     ],
   },

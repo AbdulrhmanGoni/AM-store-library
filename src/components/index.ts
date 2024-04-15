@@ -22,6 +22,7 @@ export { default as HighlightedWord } from "./HighlightedWord"
 export { default as MessageCard } from "./MessageCard"
 export { default as CustomThemeProvider } from "./CustomThemeProvider"
 export { default as SwitchTheme } from "./SwitchTheme"
-export { default } from "./OptionsMenu"
+import OptionsMenu from "./OptionsMenu"
+export { OptionsMenu }
 export { default as AMLogo } from "./AMLogo"
 export { default as FormsPagesContainer } from "./FormsPagesContainer"
