@@ -1,7 +1,6 @@
 import React, { ReactNode, createContext, useState, JSX } from 'react';
 import { Box, IconButton, Menu, SxProps } from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
-import MenuOption, { MenuOptionProps } from './MenuOption';
 
 interface OptionsMenuProps {
     style?: SxProps,
@@ -51,7 +50,5 @@ function OptionsMenu({ style, preventDefaultStyle, children }: OptionsMenuProps)
         </Box>
     );
 }
-
-OptionsMenu.Option = MenuOption as ({ asyncAction, optionText, optionIcon }: MenuOptionProps) => JSX.Element
 
 export default OptionsMenu

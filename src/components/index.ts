@@ -7,14 +7,12 @@ export {
     ElementWithLoadingState,
     DisplayerItemWithLoadingStateProps
 } from './ElementWithLoadingState';
-
 export {
     SearchForProductsField,
     SearchResultRenderer,
     SearchFieldProps,
     searchResponse
 } from './SearchForProductsField';
-
 export { ProductAvailabationState } from "./ProductAvailabationState"
 export { AlertTooltip } from './AlertTooltip';
 export { P } from './P';
@@ -24,5 +22,6 @@ export { default as HighlightedWord } from "./HighlightedWord"
 export { default as MessageCard } from "./MessageCard"
 export { default as CustomThemeProvider } from "./CustomThemeProvider"
 export { default as SwitchTheme } from "./SwitchTheme"
-export { default as OptionsMenu } from "./OptionsMenu"
+export { default } from "./OptionsMenu"
 export { default as AMLogo } from "./AMLogo"
+export { default as FormsPagesContainer } from "./FormsPagesContainer"

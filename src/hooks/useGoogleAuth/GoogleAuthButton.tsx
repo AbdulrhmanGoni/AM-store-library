@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, SxProps } from "@mui/material";
 import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
-import googleIcon from "../../images/google-icon.png";
+import { googleIcon } from "../../images";
 
 export type GoogleUserCredentials = Omit<
   TokenResponse,
