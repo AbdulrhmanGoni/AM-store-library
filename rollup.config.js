@@ -30,7 +30,7 @@ export default [
       commonjs(),
       url({
         destDir: 'dist/assets',
-        publicPath: '/assets/',
+        publicPath: '../assets/',
         fileName: '[name]-[hash][extname]',
         include: [
           '**/*.svg',
