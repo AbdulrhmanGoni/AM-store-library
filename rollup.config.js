@@ -29,8 +29,8 @@ export default [
       css({ extract: 'global.css' }),
       commonjs(),
       url({
-        destDir: 'dist/cjs/assets/',
-        publicPath: './assets/',
+        destDir: 'dist/assets',
+        publicPath: '/assets/',
         fileName: '[name]-[hash][extname]',
         include: [
           '**/*.svg',
