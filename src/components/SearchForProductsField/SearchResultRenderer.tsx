@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, List, Typography, ListItem, ListItemButton } from '@mui/material';
 import { SearchFieldProps, searchResponse } from '.';
 
-
 interface SearchResultRendererProps extends SearchFieldProps {
     products: searchResponse[],
     searchText: string,
@@ -42,9 +41,9 @@ export default function SearchResultRenderer(props: SearchResultRendererProps) {
                 overflow: "auto"
             }}>
                 {
-                    !!products.length ?
+                    products.length ?
                         products.map(({ _id, title }) => {
-                            let regExp = new RegExp(searchText.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1"), "ig");
+                            const regExp = new RegExp(searchText.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1"), "ig");
                             const
                                 matched = title.match(regExp),
                                 splitedText = title.split(regExp);
