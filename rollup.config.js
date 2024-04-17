@@ -2,7 +2,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 import dotenv from "rollup-plugin-dotenv"
-import url from '@rollup/plugin-url';
+import image from '@rollup/plugin-image';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import svg from '@svgr/rollup'
 import dts from 'rollup-plugin-dts'
@@ -25,21 +25,10 @@ export default [
       typescript(),
       peerDepsExternal(),
       resolve(),
+      image(),
       svg(),
       css({ extract: 'global.css' }),
       commonjs(),
-      url({
-        destDir: 'dist/assets',
-        publicPath: '../assets/',
-        fileName: '[name]-[hash][extname]',
-        include: [
-          '**/*.svg',
-          '**/*.png',
-          '**/*.jpg',
-          '**/*.jpeg'
-        ],
-        limit: 0
-      }),
       terser(),
     ],
   },

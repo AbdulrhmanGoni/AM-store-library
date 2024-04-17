@@ -3,6 +3,7 @@ import { Box, CircularProgress, IconButton, IconButtonProps, TextField } from '@
 import SearchResultRenderer from "./SearchResultRenderer"
 import { Close, Replay } from '@mui/icons-material';
 
+
 export interface searchResponse { _id: string, title: string }
 export interface SearchFieldProps {
     actionWithProductId: (id: string) => void,
@@ -15,9 +16,6 @@ export interface SearchFieldProps {
     additionalFilter?: string,
     closeOnClick?: boolean
 }
-
-let timeoutId: NodeJS.Timeout | undefined;
-let abortController: AbortController | undefined;
 
 export default function SearchForProductsField(props: SearchFieldProps) {
 
@@ -35,65 +33,45 @@ export default function SearchForProductsField(props: SearchFieldProps) {
 
     const inputRef = useRef<HTMLInputElement | undefined>();
     const [searchInput, setSearchInput] = useState<string>("");
-    const [notFoundOn, setNotFoundOn] = useState<string>("");
-    const [products, setProducts] = useState<searchResponse[]>();
+    const [searchKey, setSearchKey] = useState<string>("");
+    const [products, setProducts] = useState<searchResponse[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
     const [ableResultsList, setAbleResultsList] = useState<boolean>(true);
 
-    function fetchProducts(searchInput: string, signal?: AbortSignal) {
+    function onChange(value: string) {
+        value[0] !== searchKey && setSearchKey(value[0])
+        !value && clearSearchField()
+        setSearchInput(value)
+    }
+
+    function fetchProducts(searchKey: string) {
         setIsLoading(true);
-        fetch(`${hostName}/products?title=${searchInput}&type=title&limit=25&${additionalFilter}`, { signal })
+        fetch(`${hostName}/products?title=${searchKey}&type=title&${additionalFilter}`)
             .then((res) => {
-                if (res.status === 200) return res.json();
+                if (res.status == 200) return res.json();
                 else return null;
             })
             .then((data) => {
                 if (data) {
-                    if (!data.length) {
-                        setNotFoundOn(searchInput)
-                    }
                     setProducts(data)
                     isError && setIsError(false);
                 } else setIsError(true)
             })
-            .catch((error) => {
-                if (!error?.message?.match("aborted")) {
-                    setIsError(true)
-                }
-            })
+            .catch(() => { setIsError(true) })
             .finally(() => { setIsLoading(false) })
     }
 
-    function debounce() {
-        if (searchInput && searchInput.slice(0, notFoundOn.length || 1) !== notFoundOn) {
-            clearTimeout(timeoutId);
-            abortController?.abort();
-            abortController = new AbortController();
-            timeoutId = setTimeout(() => {
-                fetchProducts(searchInput, abortController?.signal);
-            }, 500);
-        }
-    }
-
     function clearSearchField() {
-        abortController?.abort();
-        abortController = undefined;
-        timeoutId = undefined;
         setSearchInput("");
-        setProducts(undefined);
+        setSearchKey("");
+        setProducts([]);
     }
 
     function filterProducts(productsList: searchResponse[]): searchResponse[] {
-        const regExp = searchInput.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1")
+        let regExp = searchInput.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1")
         return productsList.filter(product => product.title.match(new RegExp(regExp, "ig")))
     }
-
-    useEffect(() => {
-        if (!(ableResultsList && !disableResultsList)) {
-            setAbleResultsList(!disableResultsList)
-        }
-    }, [])
 
     useEffect(() => {
         if (!(ableResultsList && !disableResultsList)) {
@@ -102,7 +80,14 @@ export default function SearchForProductsField(props: SearchFieldProps) {
     }, [disableResultsList])
 
     useEffect(() => {
+        if (!disableResultsList) {
+            searchKey && fetchProducts(searchKey)
+        }
+    }, [searchKey, disableResultsList])
+
+    useEffect(() => {
         if (defaultValue) {
+            setSearchKey(defaultValue[0])
             setSearchInput(defaultValue)
         }
     }, [defaultValue])
@@ -120,15 +105,11 @@ export default function SearchForProductsField(props: SearchFieldProps) {
     return (
         <Box sx={{ display: "flex", gap: 1, position: "relative", width: "100%" }}>
             <TextField
-                onKeyUp={debounce}
-                onChange={({ target }) => {
-                    products && setProducts(undefined);
-                    setSearchInput(target.value);
-                }}
+                onChange={({ target }) => { onChange(target.value) }}
                 inputProps={{ sx: { pr: "40px" } }}
                 label="Search for products"
-                inputRef={inputRef}
                 id='searchProductsField'
+                inputRef={inputRef}
                 value={searchInput}
                 error={isError}
                 size={fieldSize}
@@ -138,7 +119,7 @@ export default function SearchForProductsField(props: SearchFieldProps) {
                 }}
                 onKeyDown={(event) => {
                     if (event.key === "Enter" || event.code === "Enter") {
-                        const input = event.target as HTMLInputElement
+                        let input = event.target as HTMLInputElement
                         onEnter?.(input.value)
                     }
                 }}
@@ -150,12 +131,12 @@ export default function SearchForProductsField(props: SearchFieldProps) {
                     </Box>
                     : isError ?
                         <IconButton
-                            onClick={() => { fetchProducts(searchInput, abortController?.signal) }}
+                            onClick={() => { fetchProducts(searchKey) }}
                             {...iconsProps}
                         >
                             <Replay sx={iconSize} color="error" />
                         </IconButton>
-                        : searchInput ?
+                        : !!searchInput ?
                             <IconButton
                                 onClick={() => { clearSearchField() }}
                                 {...iconsProps}
